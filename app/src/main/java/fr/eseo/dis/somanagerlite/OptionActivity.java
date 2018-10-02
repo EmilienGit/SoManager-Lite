@@ -36,7 +36,7 @@ public class OptionActivity extends AppCompatActivity {
 
     /**
      *
-     * @TODO La page suivante quand tu cliquera sera la classe OptionDetailsActivity
+     * @TODO La page suivante quand tu cliqueras sera la classe OptionDetailsActivity
      *
      * */
 
