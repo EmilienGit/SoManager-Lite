@@ -8,7 +8,7 @@
     android:paddingRight="6dp"
     android:paddingTop="6dp"
     android:paddingBottom="6dp"
-    tools:context=".OptionProjectActivity">
+    tools:context=".MenuProjectActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
