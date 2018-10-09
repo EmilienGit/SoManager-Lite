@@ -31,10 +31,10 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        subjectsButton.setOnClickListener(new View.OnClickListener() {
+        juriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), MenuProjectActivity.class));
+                startActivity(new Intent(getApplicationContext(), MenuJuryActivity.class));
             }
         });
     }
