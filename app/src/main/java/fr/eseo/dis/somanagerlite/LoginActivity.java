@@ -327,6 +327,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return true;
         }
 
+        /***
+         *
+         * @ToDO Changer les truc de connections
+         *
+         */
+
+
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
@@ -334,8 +341,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 finish();
-                Intent myIntent = new Intent(getBaseContext(), OptionActivity.class);
-                startActivityForResult(myIntent, 0);
+                Intent intent = new Intent(getBaseContext(), MenuActivity.class);
+                startActivity(intent);
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
