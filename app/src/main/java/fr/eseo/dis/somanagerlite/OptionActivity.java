@@ -44,6 +44,7 @@ public class OptionActivity extends AppCompatActivity {
 
 
     public void clickOptionCard(Option option) {
+
         Intent intent = new Intent(this, OptionDetailsActivity.class);
         intent.putExtra(OPTION_EXTRA, option);
         startActivity(intent);
