@@ -11,7 +11,7 @@ public class OptionData {
             new fr.eseo.dis.somanagerlite.data.Option(1, "My Juries"),
             new fr.eseo.dis.somanagerlite.data.Option(1, "Posters"),
             new fr.eseo.dis.somanagerlite.data.Option(1, "Mark"),
-            new fr.eseo.dis.somanagerlite.data.Option(1, "Subject`")
+            new fr.eseo.dis.somanagerlite.data.Option(1, "Subject")
     };
 
     private OptionData() {
