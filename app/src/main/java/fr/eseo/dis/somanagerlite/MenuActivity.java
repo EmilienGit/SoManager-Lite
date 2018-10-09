@@ -19,21 +19,24 @@ public class MenuActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
 
-        final Button posterButton = (Button) findViewById(R.id.Posters);
-        posterButton.setOnClickListener(new View.OnClickListener() {
+        final Button posterButton = findViewById(R.id.Posters);
+        final Button juriesButton = (Button) findViewById(R.id.Juries);
+        final Button marksButton = (Button) findViewById(R.id.Marks);
+        final Button subjectsButton = (Button) findViewById(R.id.Subject);
 
+        posterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MenuPosterActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), MenuPosterActivity.class));
+            }
+        });
+
+        juriesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MenuProjectActivity.class));
             }
         });
     }
-
-    public void onClick(View view) {
-        Intent intent = new Intent(this, MenuPosterActivity.class);
-        startActivity(intent);
-    }
-
 
 }
