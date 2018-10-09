@@ -31,7 +31,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        juriesButton.setOnClickListener(new View.OnClickListener() {
+        subjectsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), MenuProjectActivity.class));
