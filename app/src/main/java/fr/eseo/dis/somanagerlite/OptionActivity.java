@@ -1,10 +1,12 @@
 package fr.eseo.dis.somanagerlite;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import fr.eseo.dis.somanagerlite.data.Option;
 import fr.eseo.dis.somanagerlite.data.adapters.OptionAdapter;
 import fr.eseo.dis.somanagerlite.data.source.OptionData;
 
@@ -40,11 +42,11 @@ public class OptionActivity extends AppCompatActivity {
      *
      * */
 
-    /*
+
     public void clickOptionCard(Option option) {
         Intent intent = new Intent(this, OptionDetailsActivity.class);
         intent.putExtra(OPTION_EXTRA, option);
         startActivity(intent);
     }
-    */
+
 }

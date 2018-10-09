@@ -55,14 +55,14 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.OptionView
          * @TODO
          *
          * */
-        /*
+
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activity.clickOptionCard(option);
             }
         });
-        */
+
     }
 
     class OptionViewHolder extends RecyclerView.ViewHolder{
