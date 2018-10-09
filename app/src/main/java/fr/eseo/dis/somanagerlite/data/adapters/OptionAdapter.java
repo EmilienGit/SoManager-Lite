@@ -59,7 +59,7 @@ public class OptionAdapter extends RecyclerView.Adapter<OptionAdapter.OptionView
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.clickOptionCard(option);
+                activity.clickOptionPoster(option);
             }
         });
 

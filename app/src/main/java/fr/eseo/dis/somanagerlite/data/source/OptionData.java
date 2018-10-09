@@ -9,9 +9,9 @@ public class OptionData {
 
     private static fr.eseo.dis.somanagerlite.data.Option[] OPTIONS = new fr.eseo.dis.somanagerlite.data.Option[]{
             new fr.eseo.dis.somanagerlite.data.Option(1, "My Juries"),
-            new fr.eseo.dis.somanagerlite.data.Option(1, "Posters"),
-            new fr.eseo.dis.somanagerlite.data.Option(1, "Mark"),
-            new fr.eseo.dis.somanagerlite.data.Option(1, "Subject`")
+            new fr.eseo.dis.somanagerlite.data.Option(2, "Posters"),
+            new fr.eseo.dis.somanagerlite.data.Option(3, "Mark"),
+            new fr.eseo.dis.somanagerlite.data.Option(4, "Subject")
     };
 
     private OptionData() {

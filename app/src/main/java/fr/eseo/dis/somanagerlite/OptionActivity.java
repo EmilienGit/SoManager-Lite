@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import fr.eseo.dis.somanagerlite.data.Option;
 import fr.eseo.dis.somanagerlite.data.adapters.OptionAdapter;
@@ -12,7 +13,6 @@ import fr.eseo.dis.somanagerlite.data.source.OptionData;
 
 public class OptionActivity extends AppCompatActivity {
 
-    public static final String OPTION_EXTRA = "option_extra";
     public static  int NEW_CARD_COUNTER;
 
     private OptionAdapter optionAdapter;
@@ -36,17 +36,7 @@ public class OptionActivity extends AppCompatActivity {
         optionAdapter.setOptions(OptionData.getOptions());
     }
 
-    /**
-     *
-     * @TODO La page suivante quand tu cliqueras sera la classe OptionDetailsActivity
-     *
-     * */
-
-
-    public void clickOptionCard(Option option) {
-        Intent intent = new Intent(this, OptionDetailsActivity.class);
-        intent.putExtra(OPTION_EXTRA, option);
-        startActivity(intent);
+    public void clickOptionPoster(Option option) {
+        startActivity(new Intent(this, OptionPosterActivity.class));
     }
-
 }
