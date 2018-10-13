@@ -10,9 +10,9 @@ public class DummyData {
     private static List<Poster> LIST_POSTER;
 
     private static Poster[] POSTER = new Poster[]{
-            new Poster("Excalibur II"),
-            new Poster("Animal Tracker"),
-            new Poster("NO IDEA"),
+            new Poster("Excalibur II", "Description 1"),
+            new Poster("Animal Tracker", "Description 1"),
+            new Poster("NO IDEA", "Description 1"),
     };
 
     private DummyData() {
