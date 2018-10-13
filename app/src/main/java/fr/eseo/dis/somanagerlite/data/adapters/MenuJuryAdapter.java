@@ -11,10 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.dis.somanagerlite.MenuJuryActivity;
-import fr.eseo.dis.somanagerlite.MenuPosterActivity;
+import fr.eseo.dis.somanagerlite.MenuProjectActivity;
 import fr.eseo.dis.somanagerlite.R;
 import fr.eseo.dis.somanagerlite.data.Jury;
-import fr.eseo.dis.somanagerlite.data.Poster;
 import fr.eseo.dis.somanagerlite.data.Project;
 
 public class MenuJuryAdapter extends RecyclerView.Adapter<MenuJuryAdapter.JuryViewHolder> {
