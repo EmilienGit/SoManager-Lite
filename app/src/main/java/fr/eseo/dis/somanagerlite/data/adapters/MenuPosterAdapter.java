@@ -20,6 +20,8 @@ public class MenuPosterAdapter extends RecyclerView.Adapter<MenuPosterAdapter.Po
 
     private List<Poster> posterList;
 
+    public List<Integer> positionsExpanded = new ArrayList<>();
+
     public MenuPosterAdapter(MenuPosterActivity activity){
         this.activity = activity;
         setPosters(new ArrayList<Poster>());
@@ -41,19 +43,43 @@ public class MenuPosterAdapter extends RecyclerView.Adapter<MenuPosterAdapter.Po
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PosterViewHolder posterViewHolder, int position) {
+    public void onBindViewHolder(@NonNull PosterViewHolder posterViewHolder, final int position) {
         final Poster poster = posterList.get(position);
         posterViewHolder.nom.setText(poster.getName());
         posterViewHolder.description.setText(poster.getDescription());
+
+        if (positionsExpanded.contains(position)) {
+            posterViewHolder.description.setVisibility(View.VISIBLE);
+        } else {
+            posterViewHolder.description.setVisibility(View.GONE);
+        }
+
+        posterViewHolder.view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                TextView description = (TextView) v.findViewById(R.id.poster_description);
+                if (positionsExpanded.contains(position)) {
+                    description.setVisibility(View.GONE);
+                    positionsExpanded.remove(new Integer(position));
+                } else {
+                    description.setVisibility(View.VISIBLE);
+                    positionsExpanded.add(position);
+                }
+                return true;
+            }
+        });
     }
 
     class PosterViewHolder extends RecyclerView.ViewHolder{
+
+        private final View view;
 
         private final TextView nom;
         private final TextView description;
 
         public PosterViewHolder(View view){
             super(view);
+            this.view = view;
             nom = view.findViewById(R.id.poster_name);
             description = view.findViewById(R.id.poster_description);
         }
