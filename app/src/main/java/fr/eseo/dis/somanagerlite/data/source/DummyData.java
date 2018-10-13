@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.eseo.dis.somanagerlite.data.Jury;
+import fr.eseo.dis.somanagerlite.data.Mark;
 import fr.eseo.dis.somanagerlite.data.Poster;
 import fr.eseo.dis.somanagerlite.data.Project;
 
@@ -15,6 +16,8 @@ public class DummyData {
     private static List<Poster> LIST_POSTER = new ArrayList<>();
 
     private static List<Project> LIST_PROJECT = new ArrayList<>();
+
+    private static List<Mark> LIST_MARK = new ArrayList<>();
 
     private static Jury[] JURY = new Jury[]{
             new Jury(001, "21 janv 2019 - 8h00"),
@@ -35,6 +38,13 @@ public class DummyData {
             new Project("Titre 3", "My resume 3 "),
     };
 
+    private static Mark[] MARK = new Mark[]{
+            new Mark("Emma", "Mansalier", 20),
+            new Mark("Quentin", "Pichavant", 17),
+            new Mark("Emilien", "Mamalet",4),
+            new Mark("Etienne", "Piou", 5),
+    };
+
     private DummyData() {
     }
 
@@ -51,5 +61,10 @@ public class DummyData {
     public static List<Project> getProject() {
         LIST_PROJECT = Arrays.asList(PROJECT);
         return LIST_PROJECT;
+    }
+
+    public static List<Mark> getMark() {
+        LIST_MARK = Arrays.asList(MARK);
+        return LIST_MARK;
     }
 }

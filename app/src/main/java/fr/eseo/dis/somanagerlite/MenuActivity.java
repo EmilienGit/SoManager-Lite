@@ -20,9 +20,9 @@ public class MenuActivity extends AppCompatActivity {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
 
         final Button posterButton = findViewById(R.id.Posters);
-        final Button juriesButton = (Button) findViewById(R.id.Juries);
-        final Button marksButton = (Button) findViewById(R.id.Marks);
-        final Button subjectsButton = (Button) findViewById(R.id.Subject);
+        final Button juriesButton = findViewById(R.id.Juries);
+        final Button marksButton = findViewById(R.id.Marks);
+        final Button subjectsButton = findViewById(R.id.Subject);
 
         posterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +35,20 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), MenuJuryActivity.class));
+            }
+        });
+
+        marksButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MenuMarkActivity.class));
+            }
+        });
+
+        subjectsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MenuProjectActivity.class));
             }
         });
     }
