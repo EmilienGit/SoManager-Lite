@@ -25,15 +25,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/tv_jury_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="2dp"
-                android:text="Jury n°X"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
-            <TextView
                 android:id="@+id/tv_jury_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,15 +37,6 @@
                 android:gravity="end" />
 
         </LinearLayout>
-        <TextView
-            android:id="@+id/tv_project_resume_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="2dp"
-            android:text="Resume:"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="16sp" />
         <TextView
             android:id="@+id/tv_project_resume"
             android:layout_width="match_parent"

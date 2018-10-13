@@ -11,95 +11,66 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.dis.somanagerlite.MenuJuryActivity;
+import fr.eseo.dis.somanagerlite.MenuPosterActivity;
+import fr.eseo.dis.somanagerlite.R;
 import fr.eseo.dis.somanagerlite.data.Jury;
+import fr.eseo.dis.somanagerlite.data.Poster;
+import fr.eseo.dis.somanagerlite.data.Project;
 
-public class MenuJuryAdapter {
-/*
+public class MenuJuryAdapter extends RecyclerView.Adapter<MenuJuryAdapter.JuryViewHolder> {
+
     private MenuJuryActivity activity;
 
-    private List<Jury> juries;
+    private List<Jury> juryList;
+    private List<Project> projectList;
 
-    public List<Integer> positionsExpanded;
-
-    public MenuJuryAdapter(MenuJuryActivity filmographyActivity){
-        this.activity = filmographyActivity;
-        this.positionsExpanded = new ArrayList<>();
+    public MenuJuryAdapter(MenuJuryActivity activity){
+        this.activity = activity;
         setJuries(new ArrayList<Jury>());
+        setProjects(new ArrayList<Project>());
     }
 
     public void setJuries(List<Jury> juries){
-        this.juries = juries;
+        this.juryList = juries;
+    }
+
+    public void setProjects(List<Project> projects){
+        this.projectList = projects;
     }
 
     @Override
     public int getItemCount(){
-        return juries.size();
+        return juryList.size();
     }
 
     @Override
-    public FilmographyViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View filmView = LayoutInflater.from(parent.getContext()).inflate(R.layout.filmography_card_layout, parent, false);
-        return new FilmographyViewHolder(filmView);
+    public MenuJuryAdapter.JuryViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        View juryView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_menu_jury, parent, false);
+        return new MenuJuryAdapter.JuryViewHolder(juryView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FilmographyViewHolder holder, final int position) {
-        final Jury film = juries.get(position);
-        holder.filmTitre.setText(film.getTitre());
-        holder.filmGenre.setText(film.getGenre());
-        holder.filmAnnee.setText(String.valueOf(film.getAnnee()));
-        holder.filmResume.setText(film.getResume());
-        if (positionsExpanded.contains(position)) {
-            holder.filmResume.setVisibility(View.VISIBLE);
-        } else {
-            holder.filmResume.setVisibility(View.GONE);
-        }
-
-        holder.view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.clickFilmCard(film);
-            }
-        });
-        holder.view.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                TextView resume = (TextView) v.findViewById(R.id.tv_film_resume);
-                TextView resumeLabel = (TextView) v.findViewById(R.id.tv_film_resume_label);
-                if (positionsExpanded.contains(position)) {
-                    resume.setVisibility(View.GONE);
-                    resumeLabel.setVisibility(View.GONE);
-                    positionsExpanded.remove(new Integer(position));
-                } else {
-                    resume.setVisibility(View.VISIBLE);
-                    resumeLabel.setVisibility(View.VISIBLE);
-                    positionsExpanded.add(position);
-                }
-                return true;
-            }
-        });
+    public void onBindViewHolder(@NonNull MenuJuryAdapter.JuryViewHolder juryViewHolder, int position) {
+        final Jury jury = juryList.get(position);
+        final Project project = projectList.get(position);
+        juryViewHolder.dateJury.setText(jury.getDate());
+        juryViewHolder.projectTitle.setText(project.getTitle());
+        juryViewHolder.projectResume.setText(project.getResume());
     }
 
+    class JuryViewHolder extends RecyclerView.ViewHolder{
 
-    class FilmographyViewHolder extends RecyclerView.ViewHolder{
+        private final TextView dateJury;
+        private final TextView projectTitle;
+        private final TextView projectResume;
 
-        private final View view;
-
-        private final TextView juryTitre;
-        private final TextView juryNumber;
-        private final TextView juryDate;
-        private final TextView juryResume;
-
-        public FilmographyViewHolder(View view){
+        public JuryViewHolder(View view){
             super(view);
-            this.view = view;
-            juryTitre = view.findViewById(R.id.tv_film_title);
-            juryNumber = view.findViewById(R.id.tv_film_genre);
-            juryDate = view.findViewById(R.id.tv_film_annee);
-            juryResume = view.findViewById(R.id.tv_film_resume);
-
-
+            dateJury = view.findViewById(R.id.tv_jury_date);
+            projectTitle = view.findViewById(R.id.tv_project_title);
+            projectResume = view.findViewById(R.id.tv_project_resume);
 
         }
-    }*/
+    }
+
 }
