@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.dis.somanagerlite.MenuPosterActivity;
@@ -21,18 +22,22 @@ public class MenuPosterAdapter extends RecyclerView.Adapter<MenuPosterAdapter.Po
 
     public MenuPosterAdapter(MenuPosterActivity activity){
         this.activity = activity;
+        setPosters(new ArrayList<Poster>());
     }
 
     public void setPosters(List<Poster> posters){
         this.posterList = posters;
     }
 
-    @NonNull
     @Override
-    public MenuPosterAdapter.PosterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public int getItemCount(){
+        return posterList.size();
+    }
+
+    @Override
+    public MenuPosterAdapter.PosterViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View posterView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_menu_poster, parent, false);
         return new PosterViewHolder(posterView);
-
     }
 
     @Override
@@ -42,12 +47,7 @@ public class MenuPosterAdapter extends RecyclerView.Adapter<MenuPosterAdapter.Po
         posterViewHolder.description.setText(poster.getDescription());
     }
 
-    @Override
-    public int getItemCount() {
-        return (posterList!=null)?posterList.size():0;
-    }
-
-    class PosterViewHolder extends RecyclerView.ViewHolder {
+    class PosterViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView nom;
         private final TextView description;
@@ -56,7 +56,7 @@ public class MenuPosterAdapter extends RecyclerView.Adapter<MenuPosterAdapter.Po
             super(view);
             nom = view.findViewById(R.id.poster_name);
             description = view.findViewById(R.id.poster_description);
-
         }
     }
+
 }
