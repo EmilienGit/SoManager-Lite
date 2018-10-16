@@ -46,10 +46,8 @@
             android:layout_gravity="center_vertical"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
-            android:numeric="decimal"
             android:inputType="number"
             android:imeOptions="actionDone"
-            android:autofillHints="@string/value"
             android:text="@string/value"/>
 
 

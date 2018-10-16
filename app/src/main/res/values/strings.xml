@@ -24,8 +24,9 @@
     <string name="text_marks">Marks</string>
     <string name="text_subjects">Subjects</string>
     <string name="projet_android">Projet android</string>
-    <string name="date">25/01/19 - 15h00</string>
+    <string name="date">25/01/19 à 15h00</string>
     <string name="projet_info">Informations of my project</string>
+    <string name="logo_eseo">ESEO</string>
 
 
 </resources>
