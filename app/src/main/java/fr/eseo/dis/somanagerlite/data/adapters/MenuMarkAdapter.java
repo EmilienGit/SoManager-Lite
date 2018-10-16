@@ -1,16 +1,13 @@
 package fr.eseo.dis.somanagerlite.data.adapters;
 
-import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +17,6 @@ import java.util.List;
 import fr.eseo.dis.somanagerlite.MenuMarkActivity;
 import fr.eseo.dis.somanagerlite.R;
 import fr.eseo.dis.somanagerlite.data.Mark;
-import fr.eseo.dis.somanagerlite.data.source.DummyData;
 
 public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkViewHolder> {
 
@@ -54,7 +50,7 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
         markViewHolder.nom.setText(mark.getNom());
         markViewHolder.prenom.setText(mark.getPrenom());
         markViewHolder.note.setText(String.valueOf(mark.getNote()));
-        Log.d("---------------------",markViewHolder.note.getText().toString());
+        markViewHolder.note.setTextColor(Color.rgb(0,184,230));
 
         markViewHolder.note.addTextChangedListener(new TextWatcher() {
             String noteTemp = markViewHolder.note.getText().toString();;
@@ -76,8 +72,8 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
                         mark.setNote(Integer.parseInt(markViewHolder.note.getText().toString()));
                     }
                     else {
-                        Toast.makeText(activity,"hello",Toast.LENGTH_LONG).show();
                         mark.setNote(Integer.parseInt(noteTemp));
+                        markViewHolder.note.setError("Notes are out of bound !");
                     }
                 } else {
                     mark.setNote(Integer.parseInt(noteTemp));
