@@ -28,6 +28,7 @@
         <activity android:name=".MenuMarkActivity"></activity>
         <activity android:name=".MenuProjectActivity"></activity>
         <activity android:name=".MenuDetailPosterActivity"></activity>
+        <activity android:name=".MenuDetailProjectActivity"></activity>
     </application>
 
 </manifest>

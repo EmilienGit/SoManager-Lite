@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -54,7 +55,6 @@ public class MenuProjectAdapter extends RecyclerView.Adapter<MenuProjectAdapter.
         } else {
             projectViewHolder.projectResume.setVisibility(View.GONE);
         }
-
         projectViewHolder.view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -70,6 +70,12 @@ public class MenuProjectAdapter extends RecyclerView.Adapter<MenuProjectAdapter.
                 return true;
             }
         });
+        projectViewHolder.buttonDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.clickDetailProjectCard(project);
+            }
+        });
     }
 
     class ProjectViewHolder extends RecyclerView.ViewHolder {
@@ -77,12 +83,14 @@ public class MenuProjectAdapter extends RecyclerView.Adapter<MenuProjectAdapter.
         private final View view;
         private final TextView projectTitle;
         private final TextView projectResume;
+        private final Button buttonDetail;
 
         public ProjectViewHolder(View view) {
             super(view);
             this.view = view;
             projectTitle = view.findViewById(R.id.tv_project_title);
             projectResume = view.findViewById(R.id.tv_project_resume);
+            buttonDetail = view.findViewById(R.id.button_details);
 
         }
     }

@@ -1,17 +1,22 @@
 package fr.eseo.dis.somanagerlite;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import fr.eseo.dis.somanagerlite.data.adapters.MenuJuryAdapter;
+import com.google.gson.Gson;
+
+import fr.eseo.dis.somanagerlite.data.Project;
 import fr.eseo.dis.somanagerlite.data.adapters.MenuProjectAdapter;
 import fr.eseo.dis.somanagerlite.data.source.DummyData;
 
 public class MenuProjectActivity extends AppCompatActivity {
 
     private MenuProjectAdapter menuProjectAdapter;
+    public static final String PROJECT_EXTRA = "project_extra";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +37,13 @@ public class MenuProjectActivity extends AppCompatActivity {
 
     private void loadOptionSelectedData(){
         menuProjectAdapter.setProjects(DummyData.getProject());
+    }
+
+    public void clickDetailProjectCard(Project project){
+        Intent intent = new Intent(this, MenuDetailProjectActivity.class);
+        Gson gson = new Gson();
+        String myJson = gson.toJson(project);
+        intent.putExtra(PROJECT_EXTRA, myJson);
+        startActivity(intent);
     }
 }
