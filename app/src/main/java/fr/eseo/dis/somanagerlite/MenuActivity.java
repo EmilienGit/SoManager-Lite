@@ -11,6 +11,7 @@ public class MenuActivity extends AppCompatActivity {
 
     public static int NEW_CARD_COUNTER;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
