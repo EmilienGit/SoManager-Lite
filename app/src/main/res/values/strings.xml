@@ -12,4 +12,20 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string name="description_du_poster">Description du poster</string>
+    <string name="poster">Poster 1</string>
+    <string name="detail">Detail</string>
+    <string name="nom">Nameless</string>
+    <string name="prenom">Noidea</string>
+    <string name="value">20</string>
+    <string name="text_myjuries">My Juries</string>
+    <string name="text_posters">Posters</string>
+    <string name="text_marks">Marks</string>
+    <string name="text_subjects">Subjects</string>
+    <string name="projet_android">Projet android</string>
+    <string name="date">25/01/19 - 15h00</string>
+    <string name="projet_info">Informations of my project</string>
+
+
 </resources>

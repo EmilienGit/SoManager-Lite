@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:elevation="6dp">
+    android:layout_margin="8dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +15,7 @@
             android:padding="2dp"
             android:maxLines="2"
             android:minLines="2"
-            android:text="My Juries"
+            android:text="@string/text_myjuries"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp" />
         <Button
@@ -26,7 +25,7 @@
             android:padding="2dp"
             android:maxLines="2"
             android:minLines="2"
-            android:text="Posters"
+            android:text="@string/text_posters"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp" />
         <Button
@@ -36,7 +35,7 @@
             android:padding="2dp"
             android:maxLines="2"
             android:minLines="2"
-            android:text="Marks"
+            android:text="@string/text_marks"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp" />
         <Button
@@ -46,7 +45,7 @@
             android:padding="2dp"
             android:maxLines="2"
             android:minLines="2"
-            android:text="Subjects"
+            android:text="@string/text_subjects"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp" />
 

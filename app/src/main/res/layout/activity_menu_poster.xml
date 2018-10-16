@@ -25,16 +25,16 @@
                 android:maxLines="2"
                 android:padding="2dp"
                 android:textColor="@color/colorPrimaryDark"
-                android:text="Poster 1"/>
+                android:text="@string/poster"/>
             <TextView
                 android:id="@+id/poster_description"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:textSize="16sp"
                 android:padding="2dp"
                 android:layout_weight="1"
                 android:textColor="@color/colorPrimary"
-                android:text="Description du poster"/>
+                android:text="@string/description_du_poster"/>
 
 
     <LinearLayout
@@ -48,7 +48,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:padding="2dp"
-            android:text="Details"
+            android:text="@string/detail"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp" />
