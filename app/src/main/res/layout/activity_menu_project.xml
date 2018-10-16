@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:elevation="6dp">
+    android:layout_margin="8dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,20 +16,20 @@
             android:padding="2dp"
             android:maxLines="2"
             android:minLines="2"
-            android:text="Projet android"
+            android:text="@string/projet_android"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tv_project_resume"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:text="Informations of my project"
+            android:text="@string/projet_info"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
       <LinearLayout
@@ -41,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_details"
-            android:text="details"/>
+            android:text="@string/detail"/>
         </LinearLayout>
     </LinearLayout>
 
