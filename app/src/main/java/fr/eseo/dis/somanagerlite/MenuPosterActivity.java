@@ -5,15 +5,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Button;
 
+import fr.eseo.dis.somanagerlite.data.Poster;
 import fr.eseo.dis.somanagerlite.data.adapters.MenuPosterAdapter;
 import fr.eseo.dis.somanagerlite.data.source.DummyData;
 
 public class MenuPosterActivity extends AppCompatActivity {
 
     private MenuPosterAdapter menuPosterAdapter;
+
+    public static final String POSTER_EXTRA = "poster_extra";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,9 @@ public class MenuPosterActivity extends AppCompatActivity {
         menuPosterAdapter.setPosters(DummyData.getPoster());
     }
 
-    public void clickDetailPosterCard(){
-        startActivity(new Intent(this, MenuDetailPosterActivity.class));
+    public void clickDetailPosterCard(Poster poster){
+        Intent intent = new Intent(this, MenuDetailPosterActivity.class);
+        intent.putExtra(POSTER_EXTRA, poster);
+        startActivity(intent);
     }
 }

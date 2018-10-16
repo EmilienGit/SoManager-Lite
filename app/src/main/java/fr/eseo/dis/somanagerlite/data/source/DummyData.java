@@ -27,8 +27,8 @@ public class DummyData {
 
     private static Poster[] POSTER = new Poster[]{
             new Poster("Excalibur II", "Description 1"),
-            new Poster("Animal Tracker", "Description 1"),
-            new Poster("NO IDEA", "Description 1"),
+            new Poster("Animal Tracker", "Description 2 : Ceci est un test pour voir jusqu'ou va la description du poster. Merci de ne pas en tenir compte. Cordialement, Quentin Pichavant."),
+            new Poster("NO IDEA", "Description 3"),
     };
 
     private static Project[] PROJECT = new Project[]{

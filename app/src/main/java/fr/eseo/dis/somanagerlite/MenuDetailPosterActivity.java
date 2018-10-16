@@ -7,13 +7,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import fr.eseo.dis.somanagerlite.data.Poster;
 import fr.eseo.dis.somanagerlite.data.adapters.MenuPosterAdapter;
 import fr.eseo.dis.somanagerlite.data.source.DummyData;
 
 public class MenuDetailPosterActivity  extends AppCompatActivity {
 
     private MenuPosterAdapter menuPosterAdapter;
+    private Poster poster;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +25,21 @@ public class MenuDetailPosterActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_menu_detail_poster);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
-/*
-        RecyclerView recycler = (RecyclerView)findViewById(R.id.posterList);
-        recycler.setHasFixedSize(true);
-        recycler.setLayoutManager(llm);
-        menuPosterAdapter = new MenuPosterAdapter(this);
-        recycler.setAdapter(menuPosterAdapter);
-*/
-        //loadOptionSelectedData();
+
+        Intent intent = getIntent();
+        Bundle data = intent.getExtras();
+        poster = (Poster) data.getParcelable(MenuPosterActivity.POSTER_EXTRA);
+        imageView = findViewById(R.id.image_poster);
+        if(poster.getName().equals("Excalibur II")){
+            imageView.setImageResource(R.drawable.image1);
+        }
+        if(poster.getName().equals("Animal Tracker")){
+            imageView.setImageResource(R.drawable.image2);
+        }
+        if(poster.getName().equals("NO IDEA")){
+            imageView.setImageResource(R.drawable.image3);
+        }
+//        loadOptionSelectedData();
     }
 
     private void loadOptionSelectedData(){

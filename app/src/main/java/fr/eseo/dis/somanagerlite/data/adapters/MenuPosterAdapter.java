@@ -76,7 +76,7 @@ public class MenuPosterAdapter extends RecyclerView.Adapter<MenuPosterAdapter.Po
         posterViewHolder.buttonDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.clickDetailPosterCard();
+                activity.clickDetailPosterCard(poster);
             }
         });
     }
