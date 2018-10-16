@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +71,14 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
             @Override
             public void afterTextChanged(Editable editable) {
                 if(!markViewHolder.note.getText().toString().equals("")){
-                    mark.setNote(Integer.parseInt(markViewHolder.note.getText().toString()));
+                    if(Integer.parseInt(markViewHolder.note.getText().toString()) >= 0
+                            && Integer.parseInt(markViewHolder.note.getText().toString()) <= 20){
+                        mark.setNote(Integer.parseInt(markViewHolder.note.getText().toString()));
+                    }
+                    else {
+                        Toast.makeText(activity,"hello",Toast.LENGTH_LONG).show();
+                        mark.setNote(Integer.parseInt(noteTemp));
+                    }
                 } else {
                     mark.setNote(Integer.parseInt(noteTemp));
                 }

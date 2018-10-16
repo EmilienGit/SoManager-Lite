@@ -38,6 +38,7 @@ public class DummyData {
     };
 
     private static Mark[] MARK = new Mark[]{
+            new Mark("SoManager", "Alpha", 10),
             new Mark("Emma", "Mansalier", 20),
             new Mark("Quentin", "Pichavant", 17),
             new Mark("Emilien", "Mamalet",14),

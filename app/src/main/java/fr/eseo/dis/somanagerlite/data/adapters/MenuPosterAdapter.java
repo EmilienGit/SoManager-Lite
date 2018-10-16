@@ -1,15 +1,19 @@
 package fr.eseo.dis.somanagerlite.data.adapters;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eseo.dis.somanagerlite.MenuActivity;
+import fr.eseo.dis.somanagerlite.MenuDetailPosterActivity;
 import fr.eseo.dis.somanagerlite.MenuPosterActivity;
 import fr.eseo.dis.somanagerlite.R;
 import fr.eseo.dis.somanagerlite.data.Poster;
@@ -68,6 +72,13 @@ public class MenuPosterAdapter extends RecyclerView.Adapter<MenuPosterAdapter.Po
                 return true;
             }
         });
+
+        posterViewHolder.buttonDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.clickDetailPosterCard();
+            }
+        });
     }
 
     class PosterViewHolder extends RecyclerView.ViewHolder{
@@ -76,12 +87,14 @@ public class MenuPosterAdapter extends RecyclerView.Adapter<MenuPosterAdapter.Po
 
         private final TextView nom;
         private final TextView description;
+        private final Button buttonDetail;
 
         public PosterViewHolder(View view){
             super(view);
             this.view = view;
             nom = view.findViewById(R.id.poster_name);
             description = view.findViewById(R.id.poster_description);
+            buttonDetail = view.findViewById(R.id.button_detail_poster);
         }
     }
 
