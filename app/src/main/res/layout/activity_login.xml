@@ -33,7 +33,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="54dp"
+                android:layout_height="58dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/logo_eseo"
                 android:src="@drawable/eseocolourcampus" />

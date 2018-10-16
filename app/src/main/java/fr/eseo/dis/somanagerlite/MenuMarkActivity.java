@@ -11,7 +11,6 @@ import fr.eseo.dis.somanagerlite.data.source.DummyData;
 public class MenuMarkActivity extends AppCompatActivity {
 
     private MenuMarkAdapter menuMarkAdapter;
-    private int x = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

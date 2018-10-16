@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,20 +66,19 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
             @Override
             public void afterTextChanged(Editable editable) {
                 if(!markViewHolder.note.getText().toString().equals("")){
-                    if(Integer.parseInt(markViewHolder.note.getText().toString()) >= 0
-                            && Integer.parseInt(markViewHolder.note.getText().toString()) <= 20){
-                        mark.setNote(Integer.parseInt(markViewHolder.note.getText().toString()));
+                    if(Double.parseDouble(markViewHolder.note.getText().toString()) >= 0
+                            && Double.parseDouble(markViewHolder.note.getText().toString()) <= 20){
+                        mark.setNote(Double.parseDouble(markViewHolder.note.getText().toString()));
                     }
                     else {
-                        mark.setNote(Integer.parseInt(noteTemp));
+                        mark.setNote(Double.parseDouble(noteTemp));
                         markViewHolder.note.setError("Notes are out of bound !");
                     }
                 } else {
-                    mark.setNote(Integer.parseInt(noteTemp));
+                    mark.setNote(Double.parseDouble(noteTemp));
                 }
             }
         });
-
     }
 
     class MarkViewHolder extends RecyclerView.ViewHolder{
