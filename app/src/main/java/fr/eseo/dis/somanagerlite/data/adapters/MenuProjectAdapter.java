@@ -20,6 +20,8 @@ public class MenuProjectAdapter extends RecyclerView.Adapter<MenuProjectAdapter.
 
     private List<Project> projectList;
 
+    public List<Integer> positionsExpanded = new ArrayList<>();
+
     public MenuProjectAdapter(MenuProjectActivity activity) {
         this.activity = activity;
         setProjects(new ArrayList<Project>());
@@ -42,19 +44,43 @@ public class MenuProjectAdapter extends RecyclerView.Adapter<MenuProjectAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MenuProjectAdapter.ProjectViewHolder projectViewHolder, int position) {
+    public void onBindViewHolder(@NonNull MenuProjectAdapter.ProjectViewHolder projectViewHolder, final int position) {
         final Project project = projectList.get(position);
         projectViewHolder.projectTitle.setText(project.getTitle());
         projectViewHolder.projectResume.setText(project.getResume());
+
+        if (positionsExpanded.contains(position)) {
+            projectViewHolder.projectResume.setVisibility(View.VISIBLE);
+        } else {
+            projectViewHolder.projectResume.setVisibility(View.GONE);
+        }
+
+        projectViewHolder.view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                TextView description = (TextView) v.findViewById(R.id.tv_project_resume);
+                if (positionsExpanded.contains(position)) {
+                    description.setVisibility(View.GONE);
+                    positionsExpanded.remove(new Integer(position));
+                } else {
+                    description.setVisibility(View.VISIBLE);
+                    positionsExpanded.add(position);
+                }
+
+                return true;
+            }
+        });
     }
 
     class ProjectViewHolder extends RecyclerView.ViewHolder {
 
+        private final View view;
         private final TextView projectTitle;
         private final TextView projectResume;
 
         public ProjectViewHolder(View view) {
             super(view);
+            this.view = view;
             projectTitle = view.findViewById(R.id.tv_project_title);
             projectResume = view.findViewById(R.id.tv_project_resume);
 

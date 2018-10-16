@@ -23,6 +23,8 @@ public class MenuJuryAdapter extends RecyclerView.Adapter<MenuJuryAdapter.JuryVi
     private List<Jury> juryList;
     private List<Project> projectList;
 
+    public List<Integer> positionsExpanded = new ArrayList<>();
+
     public MenuJuryAdapter(MenuJuryActivity activity){
         this.activity = activity;
         setJuries(new ArrayList<Jury>());
@@ -49,22 +51,45 @@ public class MenuJuryAdapter extends RecyclerView.Adapter<MenuJuryAdapter.JuryVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MenuJuryAdapter.JuryViewHolder juryViewHolder, int position) {
+    public void onBindViewHolder(@NonNull MenuJuryAdapter.JuryViewHolder juryViewHolder, final int position) {
         final Jury jury = juryList.get(position);
         final Project project = projectList.get(position);
         juryViewHolder.dateJury.setText(jury.getDate());
         juryViewHolder.projectTitle.setText(project.getTitle());
         juryViewHolder.projectResume.setText(project.getResume());
+
+        if (positionsExpanded.contains(position)) {
+            juryViewHolder.projectResume.setVisibility(View.VISIBLE);
+        } else {
+            juryViewHolder.projectResume.setVisibility(View.GONE);
+        }
+
+        juryViewHolder.view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                TextView description = (TextView) v.findViewById(R.id.tv_project_resume);
+                if (positionsExpanded.contains(position)) {
+                    description.setVisibility(View.GONE);
+                    positionsExpanded.remove(new Integer(position));
+                } else {
+                    description.setVisibility(View.VISIBLE);
+                    positionsExpanded.add(position);
+                }
+                return true;
+            }
+        });
     }
 
     class JuryViewHolder extends RecyclerView.ViewHolder{
 
+        private final View view;
         private final TextView dateJury;
         private final TextView projectTitle;
         private final TextView projectResume;
 
         public JuryViewHolder(View view){
             super(view);
+            this.view = view;
             dateJury = view.findViewById(R.id.tv_jury_date);
             projectTitle = view.findViewById(R.id.tv_project_title);
             projectResume = view.findViewById(R.id.tv_project_resume);
