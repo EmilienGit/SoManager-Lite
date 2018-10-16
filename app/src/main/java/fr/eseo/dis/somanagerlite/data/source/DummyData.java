@@ -25,7 +25,6 @@ public class DummyData {
             new Jury(003, "21 janv 2019 - 9h00"),
     };
 
-
     private static Poster[] POSTER = new Poster[]{
             new Poster("Excalibur II", "Description 1"),
             new Poster("Animal Tracker", "Description 1"),
@@ -41,8 +40,8 @@ public class DummyData {
     private static Mark[] MARK = new Mark[]{
             new Mark("Emma", "Mansalier", 20),
             new Mark("Quentin", "Pichavant", 17),
-            new Mark("Emilien", "Mamalet",4),
-            new Mark("Etienne", "Piou", 5),
+            new Mark("Emilien", "Mamalet",14),
+            new Mark("Etienne", "Piou", 15),
     };
 
     private DummyData() {

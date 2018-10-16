@@ -327,13 +327,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return true;
         }
 
-        /***
-         *
-         * @ToDO Changer les truc de connections
-         *
-         */
-
-
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
