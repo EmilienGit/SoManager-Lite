@@ -1,18 +1,12 @@
 package fr.eseo.dis.somanagerlite;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import fr.eseo.dis.somanagerlite.data.Poster;
 import fr.eseo.dis.somanagerlite.data.adapters.MenuJuryAdapter;
-import fr.eseo.dis.somanagerlite.data.adapters.MenuPosterAdapter;
-import fr.eseo.dis.somanagerlite.data.source.DummyData;
+import fr.eseo.dis.somanagerlite.data.source.TempData;
 
 public class MenuJuryActivity extends AppCompatActivity {
 
@@ -36,7 +30,7 @@ public class MenuJuryActivity extends AppCompatActivity {
     }
 
     private void loadOptionSelectedData(){
-        menuJuryAdapter.setJuries(DummyData.getJury());
-        menuJuryAdapter.setProjects(DummyData.getProject());
+        menuJuryAdapter.setJuries(TempData.getMyJury());
+        menuJuryAdapter.setProjects(TempData.getMyProject());
     }
 }

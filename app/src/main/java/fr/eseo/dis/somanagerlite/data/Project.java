@@ -5,6 +5,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Project {
     /*
     @PrimaryKey
@@ -46,27 +49,41 @@ public class Project {
         this.title = title;
     }
     */
-    public static final Parcelable.Creator<Project> CREATOR = new Parcelable.Creator<Project>(){
-        public Project createFromParcel(Parcel source){
-            return new Project(source);
-        }
 
-        public Project[] newArray(int size){
-            return new Project[size];
-        }
-    };
-
+    private String projectId;
     private String title;
-    private String resume;
+    private String description;
+    private boolean booleanPoster;
+    private User supervisor;
+    private String confidential;
+    private List<User> students;
 
-    public Project(String title, String resume){
+    public Project(String projectId, String title, String description, boolean booleanPoster, User supervisor, String confidential, List<User> students){
+        this.projectId = projectId;
         this.title = title;
-        this.resume = resume;
+        this.description = description;
+        this.booleanPoster = booleanPoster;
+        this.supervisor = supervisor;
+        this.confidential = confidential;
+        this.students = students;
     }
 
-    public Project(Parcel in){
-        this.title = in.readString();
-        this.resume = in.readString();
+    public Project(String projectId, String title,  String confidential, boolean booleanPoster, User supervisor){
+        this.projectId = projectId;
+        this.title = title;
+        this.confidential = confidential;
+        this.booleanPoster = booleanPoster;
+        this.supervisor = supervisor;
+        this.description = "";
+        this.students = new ArrayList<>();
+    }
+
+    public String getId() {
+        return projectId;
+    }
+
+    public void setId(String projectId) {
+        this.projectId = projectId;
     }
 
     public String getTitle() {
@@ -77,20 +94,48 @@ public class Project {
         this.title = title;
     }
 
-    public String getResume() {
-        return resume;
+    public String getDescription() {
+        return description;
     }
 
-    public void setResume(String resume) {
-        this.resume = resume;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean getBooleanPoster() {
+        return booleanPoster;
+    }
+
+    public void setBooleanPoster(boolean booleanPoster) {
+        this.booleanPoster = booleanPoster;
+    }
+
+
+    public User getSupervisor() {
+        return supervisor;
+    }
+
+    public void setSupervisor(User supervisor) {
+        this.supervisor = supervisor;
+    }
+
+    public String getConfid() {
+        return confidential;
+    }
+
+    public void setConfid(String confidential) {
+        this.confidential = confidential;
+    }
+
+    public List<User> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<User> students) {
+        this.students = students;
     }
 
     public int describeContents(){
         return 0;
-    }
-
-    public void writeToParcel(Parcel dest, int flags){
-        dest.writeString(this.title);
-        dest.writeString(this.resume);
     }
 }

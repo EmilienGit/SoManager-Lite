@@ -6,12 +6,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import fr.eseo.dis.somanagerlite.data.adapters.MenuMarkAdapter;
-import fr.eseo.dis.somanagerlite.data.source.DummyData;
+import fr.eseo.dis.somanagerlite.data.source.TempData;
 
 public class MenuMarkActivity extends AppCompatActivity {
 
     private MenuMarkAdapter menuMarkAdapter;
-    private int x = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +29,6 @@ public class MenuMarkActivity extends AppCompatActivity {
     }
 
     private void loadOptionSelectedData(){
-        menuMarkAdapter.setMarks(DummyData.getMark());
+        menuMarkAdapter.setMarks(TempData.getMark());
     }
 }

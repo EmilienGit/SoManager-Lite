@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import fr.eseo.dis.somanagerlite.data.Poster;
 import fr.eseo.dis.somanagerlite.data.adapters.MenuPosterAdapter;
-import fr.eseo.dis.somanagerlite.data.source.DummyData;
+import fr.eseo.dis.somanagerlite.data.source.TempData;
 
 public class MenuPosterActivity extends AppCompatActivity {
 
@@ -33,7 +33,7 @@ public class MenuPosterActivity extends AppCompatActivity {
     }
 
     private void loadOptionSelectedData(){
-        menuPosterAdapter.setPosters(DummyData.getPoster());
+        menuPosterAdapter.setPosters(TempData.getPoster());
     }
 
     public void clickDetailPosterCard(Poster poster){

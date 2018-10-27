@@ -39,9 +39,9 @@ public class Mark {
 
     private String nom;
     private String prenom;
-    private int note;
+    private double note;
 
-    public Mark(String nom, String prenom, int note){
+    public Mark(String nom, String prenom, double note){
         this.nom = nom;
         this.prenom = prenom;
         this.note = note;
@@ -50,7 +50,7 @@ public class Mark {
     public Mark(Parcel in){
         this.nom = in.readString();
         this.prenom = in.readString();
-        this.note = in.readInt();
+        this.note = in.readDouble();
 
     }
 
@@ -70,11 +70,11 @@ public class Mark {
         this.prenom = prenom;
     }
 
-    public int getNote() {
+    public double getNote() {
         return note;
     }
 
-    public void setNote(int note) {
+    public void setNote(double note) {
         this.note = note;
     }
 
@@ -85,7 +85,7 @@ public class Mark {
     public void writeToParcel(Parcel dest, int flags){
         dest.writeString(this.nom);
         dest.writeString(this.prenom);
-        dest.writeInt(this.note);
+        dest.writeDouble(this.note);
     }
 }
 

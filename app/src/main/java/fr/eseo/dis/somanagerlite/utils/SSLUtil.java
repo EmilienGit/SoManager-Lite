@@ -1,7 +1,9 @@
 package fr.eseo.dis.somanagerlite.utils;
 import android.content.Context;
+import android.util.Log;
 import android.util.Pair;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyManagementException;
@@ -11,66 +13,98 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 
 import fr.eseo.dis.somanagerlite.R;
 
-/**
- * @author Tristan LE GACQUE
- * Created 15/10/2018
- */
 public class SSLUtil {
 
-    public static Pair<SSLContext, TrustManager> getSSLAndTrust(Context context) {
+    private SSLSocketFactory sslSocketFactory;
+
+    public SSLUtil(Context context, String certifactName){
+        this.sslSocketFactory = getSocketFactory(context, certifactName);
+    }
+
+    private SSLSocketFactory getSocketFactory(Context currentContext, String certifactName) {
+
+        CertificateFactory cf = null;
         try {
-            return getSSLContext(context);
+            Certificate ca = null;
+
+            if(certifactName.equals("root")){
+                ca = getCertificate(currentContext, R.raw.root);
+            } else if (certifactName.equals("inter")) {
+                ca = getCertificate(currentContext, R.raw.inter);
+            } else if (certifactName.equals("chain")) {
+                ca = getCertificate(currentContext, R.raw.chain);
+            } else {
+                Log.e("=========", "Non de certificat invalide !");
+            }
+
+            Log.e("CERT", "ca=" + ((X509Certificate) ca).getSubjectDN());
+
+            String keyStoreType = KeyStore.getDefaultType();
+            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+            keyStore.load(null, null);
+            keyStore.setCertificateEntry("ca", ca);
+
+
+            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+            tmf.init(keyStore);
+
+
+            HostnameVerifier hostnameVerifier = new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+
+                    Log.e("CipherUsed", session.getCipherSuite());
+                    return hostname.compareTo("192.168.4.248")==0; //The Hostname of your server
+
+                }
+            };
+
+
+            HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier);
+            SSLContext context = null;
+            context = SSLContext.getInstance("TLS");
+
+            context.init(null, tmf.getTrustManagers(), null);
+            HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
+
+            SSLSocketFactory sf = context.getSocketFactory();
+
+
+            return sf;
+
         } catch (CertificateException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (KeyStoreException e) {
             e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         } catch (KeyManagementException e) {
             e.printStackTrace();
         }
 
-        throw new IllegalStateException("Impossible d'importer les certificats");
+        return  null;
     }
 
-    public static SSLContext getAppSSLContext(Context context) {
-        return getSSLAndTrust(context).first;
+    public SSLSocketFactory getSslSocketFactory() {
+        return this.sslSocketFactory;
     }
-
-    private static Pair<SSLContext, TrustManager> getSSLContext(Context context) throws CertificateException, IOException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
-        // loading CAs from an InputStream
-
-        Certificate ca = getCertificate(context, R.raw.root);
-        Certificate ca2 = getCertificate(context, R.raw.inter);
-        Certificate ca3 = getCertificate(context, R.raw.chain);
-
-        // creating a KeyStore containing our trusted CAs
-        String keyStoreType = KeyStore.getDefaultType();
-        KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-        keyStore.load(null, null);
-        keyStore.setCertificateEntry("ca", ca);
-        keyStore.setCertificateEntry("ca2", ca2);
-        keyStore.setCertificateEntry("ca3", ca3);
-
-        // creating a TrustManager that trusts the CAs in our KeyStore
-        String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-        TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-        tmf.init(keyStore);
-
-        SSLContext sslContext = SSLContext.getInstance("TLS");
-        sslContext.init(null, tmf.getTrustManagers(), null);
-        return new Pair<>(sslContext, tmf.getTrustManagers()[0]);
-    }
-
 
     private static Certificate getCertificate(Context context, int certId) throws CertificateException {
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
@@ -88,4 +122,3 @@ public class SSLUtil {
         return ca;
     }
 }
-
