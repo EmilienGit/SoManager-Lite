@@ -4,14 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import fr.eseo.dis.somanagerlite.data.Poster;
 import fr.eseo.dis.somanagerlite.data.adapters.MenuPosterAdapter;
-import fr.eseo.dis.somanagerlite.data.source.DummyData;
+import fr.eseo.dis.somanagerlite.data.source.TempData;
 
 public class MenuDetailPosterActivity  extends AppCompatActivity {
 
@@ -43,6 +40,6 @@ public class MenuDetailPosterActivity  extends AppCompatActivity {
     }
 
     private void loadOptionSelectedData(){
-        menuPosterAdapter.setPosters(DummyData.getPoster());
+        menuPosterAdapter.setPosters(TempData.getPoster());
     }
 }

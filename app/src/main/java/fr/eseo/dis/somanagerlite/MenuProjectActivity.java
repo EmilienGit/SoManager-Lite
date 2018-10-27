@@ -5,9 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import fr.eseo.dis.somanagerlite.data.adapters.MenuJuryAdapter;
 import fr.eseo.dis.somanagerlite.data.adapters.MenuProjectAdapter;
-import fr.eseo.dis.somanagerlite.data.source.DummyData;
+import fr.eseo.dis.somanagerlite.data.source.TempData;
 
 public class MenuProjectActivity extends AppCompatActivity {
 
@@ -31,6 +30,6 @@ public class MenuProjectActivity extends AppCompatActivity {
     }
 
     private void loadOptionSelectedData(){
-        menuProjectAdapter.setProjects(DummyData.getProject());
+        menuProjectAdapter.setProjects(TempData.getMyProject());
     }
 }

@@ -6,6 +6,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
+import java.util.List;
+
 //@Entity(tableName = "juries")
 public class Jury {
     /*
@@ -36,35 +38,24 @@ public class Jury {
 
         public void setDate(@NonNull String date){ this.date = date;}
     }*/
-    public static final Parcelable.Creator<Jury> CREATOR = new Parcelable.Creator<Jury>(){
-        public Jury createFromParcel(Parcel source){
-            return new Jury(source);
-        }
 
-        public Jury[] newArray(int size){
-            return new Jury[size];
-        }
-    };
-
-    private int number;
+    private String idJury;
     private String date;
+    private List<Project> listProject;
 
-    public Jury(int number, String date){
-        this.number = number;
+
+    public Jury(String idJury, String date, List<Project> listProject){
+        this.idJury = idJury;
         this.date = date;
+        this.listProject = listProject;
     }
 
-    public Jury(Parcel in){
-        this.number = in.readInt();
-        this.date = in.readString();
+    public String getId() {
+        return idJury;
     }
 
-    public int getId() {
-        return number;
-    }
-
-    public void setId(int number) {
-        this.number = number;
+    public void setId(String idJury) {
+        this.idJury = idJury;
     }
 
     public String getDate() {
@@ -75,12 +66,15 @@ public class Jury {
         this.date = date;
     }
 
-    public int describeContents(){
-        return 0;
+    public List<Project> getListProject() {
+        return listProject;
     }
 
-    public void writeToParcel(Parcel dest, int flags){
-        dest.writeInt(this.number);
-        dest.writeString(this.date);
+    public void setListProject(List<Project> listProject) {
+        this.listProject = listProject;
+    }
+
+    public int describeContents(){
+        return 0;
     }
 }
