@@ -83,7 +83,7 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
 
                         /* Set Mark */
                         final String urlSetMark = "https://192.168.4.248/pfe/webservice.php?q=NEWNT&user=" + realUser.getUsername() +
-                                "&proj==" + mark.getProjectId() + "&student=" + mark.getUserId() + "&note=" + Double.parseDouble(markViewHolder.note.getText().toString()) + "&token=" + realUser.getId();
+                                "&proj=" + mark.getProjectId() + "&student=" + mark.getUserId() + "&note=" + Double.parseDouble(markViewHolder.note.getText().toString()) + "&token=" + realUser.getId();
 
                         loadData.setMarks(activity.getApplicationContext(), urlSetMark);
                     }
@@ -93,41 +93,6 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
                     }
                 } else {
                     mark.setMyNote(Double.parseDouble(noteTemp));
-                }
-            }
-        });
-
-        markViewHolder.avgnote.addTextChangedListener(new TextWatcher() {
-            String noteTemp = markViewHolder.avgnote.getText().toString();;
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if(!markViewHolder.avgnote.getText().toString().equals("")){
-                    if(Double.parseDouble(markViewHolder.avgnote.getText().toString()) >= 0
-                            && Double.parseDouble(markViewHolder.avgnote.getText().toString()) <= 20){
-                        mark.setAvgNote(Double.parseDouble(markViewHolder.avgnote.getText().toString()));
-
-                        /* Set Mark */
-                        final String urlSetMark = "https://192.168.4.248/pfe/webservice.php?q=NEWNT&user=" + realUser.getUsername() +
-                                "&proj==" + mark.getProjectId() + "&student=" + mark.getUserId() + "&note=" + Double.parseDouble(markViewHolder.avgnote.getText().toString()) + "&token=" + realUser.getId();
-
-                        loadData.setMarks(activity.getApplicationContext(), urlSetMark);
-                    }
-                    else {
-                        mark.setAvgNote(Double.parseDouble(noteTemp));
-                        markViewHolder.avgnote.setError("Notes are out of bound !");
-                    }
-                } else {
-                    mark.setAvgNote(Double.parseDouble(noteTemp));
                 }
             }
         });

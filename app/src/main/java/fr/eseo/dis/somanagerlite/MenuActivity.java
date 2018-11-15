@@ -92,10 +92,11 @@ public class MenuActivity extends AppCompatActivity {
                 "&token="+this.user.getId();
 
         LoadData loadAllProject = new LoadData();
-
-        loadAllProject.loadProjectsMarksPosters(this.getApplicationContext(), urlAllProject, true, user);
-        loadAllProject.loadProjectsMarksPosters(this.getApplicationContext(), urlMyProject, false, user);
-        loadAllProject.loadJuries(this.getApplicationContext(), urlAllJury, true);
-        loadAllProject.loadJuries(this.getApplicationContext(), urlMyJury, false);
+        if(TempData.getProject().isEmpty()) {
+            loadAllProject.loadProjectsMarksPosters(this.getApplicationContext(), urlAllProject, true, user);
+            loadAllProject.loadProjectsMarksPosters(this.getApplicationContext(), urlMyProject, false, user);
+            loadAllProject.loadJuries(this.getApplicationContext(), urlAllJury, true);
+            loadAllProject.loadJuries(this.getApplicationContext(), urlMyJury, false);
+        }
     }
 }

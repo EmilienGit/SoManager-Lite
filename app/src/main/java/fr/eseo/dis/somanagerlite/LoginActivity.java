@@ -21,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import fr.eseo.dis.somanagerlite.data.User;
+import fr.eseo.dis.somanagerlite.data.source.TempData;
 import fr.eseo.dis.somanagerlite.utils.SSLUtil;
 
 /**
@@ -70,6 +71,8 @@ public class LoginActivity extends AppCompatActivity {
                 "&pass="+password;
 
         final SSLUtil sslUtil = new SSLUtil(this.getApplicationContext(), "root");
+
+        TempData.clearData();
 
         RequestQueue rq = Volley.newRequestQueue(this, new HurlStack(null, sslUtil.getSslSocketFactory()));
 
