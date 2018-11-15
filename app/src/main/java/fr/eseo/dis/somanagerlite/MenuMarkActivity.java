@@ -1,16 +1,21 @@
 package fr.eseo.dis.somanagerlite;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
+import fr.eseo.dis.somanagerlite.data.User;
 import fr.eseo.dis.somanagerlite.data.adapters.MenuMarkAdapter;
 import fr.eseo.dis.somanagerlite.data.source.TempData;
+import fr.eseo.dis.somanagerlite.utils.LoadData;
 
 public class MenuMarkActivity extends AppCompatActivity {
 
     private MenuMarkAdapter menuMarkAdapter;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

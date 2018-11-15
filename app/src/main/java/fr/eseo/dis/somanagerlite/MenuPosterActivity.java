@@ -33,12 +33,12 @@ public class MenuPosterActivity extends AppCompatActivity {
     }
 
     private void loadOptionSelectedData(){
-        menuPosterAdapter.setPosters(TempData.getPoster());
+        menuPosterAdapter.setPosters(TempData.getMyPoster());
     }
 
     public void clickDetailPosterCard(Poster poster){
         Intent intent = new Intent(this, MenuDetailPosterActivity.class);
-        intent.putExtra(POSTER_EXTRA, poster);
+        //intent.putExtra(POSTER_EXTRA, poster);
         startActivity(intent);
     }
 }

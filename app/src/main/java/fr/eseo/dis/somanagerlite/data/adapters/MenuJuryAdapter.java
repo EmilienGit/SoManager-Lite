@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.dis.somanagerlite.MenuJuryActivity;
-import fr.eseo.dis.somanagerlite.MenuProjectActivity;
 import fr.eseo.dis.somanagerlite.R;
 import fr.eseo.dis.somanagerlite.data.Jury;
 import fr.eseo.dis.somanagerlite.data.Project;
@@ -56,7 +55,7 @@ public class MenuJuryAdapter extends RecyclerView.Adapter<MenuJuryAdapter.JuryVi
         final Project project = projectList.get(position);
         juryViewHolder.dateJury.setText(jury.getDate());
         juryViewHolder.projectTitle.setText(project.getTitle());
-        juryViewHolder.projectResume.setText(project.getResume());
+        juryViewHolder.projectResume.setText(project.getDescription());
 
         if (positionsExpanded.contains(position)) {
             juryViewHolder.projectResume.setVisibility(View.VISIBLE);

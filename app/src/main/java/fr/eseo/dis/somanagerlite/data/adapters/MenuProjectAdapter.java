@@ -47,7 +47,7 @@ public class MenuProjectAdapter extends RecyclerView.Adapter<MenuProjectAdapter.
     public void onBindViewHolder(@NonNull MenuProjectAdapter.ProjectViewHolder projectViewHolder, final int position) {
         final Project project = projectList.get(position);
         projectViewHolder.projectTitle.setText(project.getTitle());
-        projectViewHolder.projectResume.setText(project.getResume());
+        projectViewHolder.projectResume.setText(project.getDescription());
 
         if (positionsExpanded.contains(position)) {
             projectViewHolder.projectResume.setVisibility(View.VISIBLE);

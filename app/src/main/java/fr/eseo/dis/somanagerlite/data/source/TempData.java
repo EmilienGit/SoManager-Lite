@@ -1,7 +1,6 @@
 package fr.eseo.dis.somanagerlite.data.source;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import fr.eseo.dis.somanagerlite.data.Jury;
@@ -17,37 +16,39 @@ public class TempData {
 
     private static List<Poster> LIST_POSTER = new ArrayList<>();
 
+    private static List<Poster> LIST_MY_POSTER = new ArrayList<>();
+
     private static List<Project> LIST_PROJECT = new ArrayList<>();
 
     private static List<Project> LIST_MYPROJECT = new ArrayList<>();
 
     private static List<Mark> LIST_MARK = new ArrayList<>();
 
-    private static Poster[] POSTER = new Poster[]{
-            new Poster("Excalibur II", "Description 1"),
-            new Poster("Animal Tracker", "Description 2 : Ceci est un test pour voir jusqu'ou va la description du poster. Merci de ne pas en tenir compte. Cordialement, Quentin Pichavant."),
-            new Poster("NO IDEA", "Description 3"),
-    };
-
-    private static Mark[] MARK = new Mark[]{
-            new Mark("SoManager", "Alpha", 10),
-            new Mark("Emma", "Mansalier", 20),
-            new Mark("Quentin", "Pichavant", 17),
-            new Mark("Emilien", "Mamalet",14),
-            new Mark("Etienne", "Piou", 15),
-    };
-
     private TempData() {
     }
 
+    public static List<Mark> getMark() {
+        return LIST_MARK;
+    }
+
+    public static void setListMark(List<Mark> markList) {
+        LIST_MARK = markList;
+    }
+
     public static List<Poster> getPoster() {
-        LIST_POSTER = Arrays.asList(POSTER);
         return LIST_POSTER;
     }
 
-    public static List<Mark> getMark() {
-        LIST_MARK = Arrays.asList(MARK);
-        return LIST_MARK;
+    public static void addPoster(Poster poster) {
+        LIST_POSTER.add(poster);
+    }
+
+    public static List<Poster> getMyPoster() {
+        return LIST_MY_POSTER;
+    }
+
+    public static void addMyPoster(Poster poster) {
+        LIST_MY_POSTER.add(poster);
     }
 
     public static List<Project> getProject() {

@@ -30,6 +30,6 @@ public class MenuProjectActivity extends AppCompatActivity {
     }
 
     private void loadOptionSelectedData(){
-        menuProjectAdapter.setProjects(TempData.getMyProject());
+        menuProjectAdapter.setProjects(TempData.getProject());
     }
 }

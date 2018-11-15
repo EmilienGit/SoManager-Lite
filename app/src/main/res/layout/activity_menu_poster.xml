@@ -16,18 +16,8 @@
         android:orientation="vertical"
         >
 
-            <TextView
-                android:id="@+id/poster_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:minLines="2"
-                android:maxLines="2"
-                android:padding="2dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="@string/poster"/>
-            <TextView
-                android:id="@+id/poster_description"
+            <ImageView
+                android:id="@+id/poster_image"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:textSize="16sp"
