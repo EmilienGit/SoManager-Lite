@@ -46,9 +46,9 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
     @Override
     public void onBindViewHolder(@NonNull final MarkViewHolder markViewHolder, final int position) {
         final Mark mark = markList.get(position);
-        markViewHolder.nom.setText(mark.getNom());
-        markViewHolder.prenom.setText(mark.getPrenom());
-        markViewHolder.note.setText(String.valueOf(mark.getNote()));
+        markViewHolder.forname.setText(mark.getForename());
+        markViewHolder.surname.setText(mark.getSurname());
+        markViewHolder.note.setText(String.valueOf(mark.getMyNote()));
         markViewHolder.note.setTextColor(Color.rgb(0,184,230));
 
         markViewHolder.note.addTextChangedListener(new TextWatcher() {
@@ -68,14 +68,14 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
                 if(!markViewHolder.note.getText().toString().equals("")){
                     if(Double.parseDouble(markViewHolder.note.getText().toString()) >= 0
                             && Double.parseDouble(markViewHolder.note.getText().toString()) <= 20){
-                        mark.setNote(Double.parseDouble(markViewHolder.note.getText().toString()));
+                        mark.setMyNote(Double.parseDouble(markViewHolder.note.getText().toString()));
                     }
                     else {
-                        mark.setNote(Double.parseDouble(noteTemp));
+                        mark.setMyNote(Double.parseDouble(noteTemp));
                         markViewHolder.note.setError("Notes are out of bound !");
                     }
                 } else {
-                    mark.setNote(Double.parseDouble(noteTemp));
+                    mark.setMyNote(Double.parseDouble(noteTemp));
                 }
             }
         });
@@ -85,16 +85,16 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
 
         private final View view;
 
-        private final TextView nom;
-        private final TextView prenom;
+        private final TextView forname;
+        private final TextView surname;
         private final TextView note;
 
         public MarkViewHolder(View view){
             super(view);
             this.view = view;
 
-            nom = view.findViewById(R.id.mark_nom);
-            prenom = view.findViewById(R.id.mark_prenom);
+            forname = view.findViewById(R.id.mark_forname);
+            surname = view.findViewById(R.id.mark_surname);
             note = view.findViewById(R.id.mark_value);
         }
     }

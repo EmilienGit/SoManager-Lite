@@ -1,54 +1,9 @@
 package fr.eseo.dis.somanagerlite.data;
 
-import android.arch.persistence.room.PrimaryKey;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.support.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Project {
-    /*
-    @PrimaryKey
-    @NonNull
-    private int idProject;
-
-    @NonNull
-    private String title;
-
-    @NonNull
-    private String resume;
-
-
-    public Project(@NonNull int idProject,@NonNull String title, @NonNull String resume){
-        this.idProject = idProject;
-        this.title = title;
-        this.resume = resume;
-    }
-
-    @NonNull
-    public int getIdProject() {
-        return idProject;
-    }
-
-    public void setIdProject(@NonNull int idProject) {
-        this.idProject = idProject;
-    }
-
-    @NonNull
-    public String getResume(){ return  resume;}
-
-    public void setResume(@NonNull String resume){ this.resume = resume;}
-
-    @NonNull
-    public String getTitle(){
-        return this.title;
-    }
-    public void setTitle(@NonNull String title){
-        this.title = title;
-    }
-    */
 
     private String projectId;
     private String title;

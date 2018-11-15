@@ -2,7 +2,9 @@ package fr.eseo.dis.somanagerlite.utils;
 
 import android.content.Context;
 
+import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -10,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.dis.somanagerlite.data.Jury;
+import fr.eseo.dis.somanagerlite.data.Mark;
 import fr.eseo.dis.somanagerlite.data.Project;
 import fr.eseo.dis.somanagerlite.data.User;
 import fr.eseo.dis.somanagerlite.data.source.TempData;
@@ -29,8 +33,9 @@ public class LoadData {
     public LoadData(){
     }
 
-    public void loadProjects(Context context, String url, final boolean touteslesdonnees) {
+    public void loadProjectsMarksPosters(final Context context, String url, final boolean touteslesdonnees, User user) {
 
+        final User realUser = user;
         final SSLUtil sslUtil = new SSLUtil(context, "root");
 
         RequestQueue rq = Volley.newRequestQueue(context, new HurlStack(null, sslUtil.getSslSocketFactory()));
@@ -66,7 +71,7 @@ public class LoadData {
                                     JSONArray studentsJSON = project.getJSONArray("students");
 
                                     for(int j = 0; j < studentsJSON .length(); j++) {
-                                        JSONObject student = studentsJSON.getJSONObject(i);
+                                        JSONObject student = studentsJSON.getJSONObject(j);
                                         String userId = student.getString("userId");
                                         String studentForename = student.getString("forename");
                                         String studentSurename = student.getString("surname");
@@ -79,8 +84,28 @@ public class LoadData {
 
                                 if(touteslesdonnees){
                                     TempData.setListProject(listProject);
+                                    for(int i = 0; i < TempData.getProject().size(); i++) {
+                                        /* Poster */
+                                        final String urlAllPosters = "https://192.168.4.248/pfe/webservice.php?q=POSTR&user=" + realUser.getUsername() +
+                                                "&proj==" + TempData.getProject().get(i).getId() + "&style=" + "THB64" + "&token=" + realUser.getId();
+
+                                        loadPosters(context, urlAllPosters, true);
+                                    }
                                 } else {
                                     TempData.setListMyProject(listProject);
+                                    for(int i = 0; i < TempData.getMyProject().size(); i++) {
+                                        /* Mark */
+                                        final String urlAllMarks = "https://192.168.4.248/pfe/webservice.php?q=NOTES&user=" + realUser.getUsername() +
+                                                "&proj==" + TempData.getMyProject().get(i).getId() + "&token=" + realUser.getId();
+
+                                        loadMarks(context, urlAllMarks);
+
+                                        /* Poster */
+                                        final String urlAllPosters = "https://192.168.4.248/pfe/webservice.php?q=POSTR&user=" + realUser.getUsername() +
+                                                "&proj==" + TempData.getMyProject().get(i).getId() + "&style=" + "THB64" + "&token=" + realUser.getId();
+
+                                        loadPosters(context, urlAllPosters, false);
+                                    }
                                 }
                             }
                         } catch (JSONException e) {
@@ -96,7 +121,7 @@ public class LoadData {
         rq.add(s);
     }
 
-    public void loadJuries(Context context, String url, final boolean touteslesdonnees) {
+    public void loadJuries(final Context context, String url, final boolean touteslesdonnees) {
 
         final SSLUtil sslUtil = new SSLUtil(context, "root");
 
@@ -126,7 +151,7 @@ public class LoadData {
                                     JSONArray projectJSON = infoJSON.getJSONArray("projects");
 
                                     for(int j = 0; j < projectJSON .length(); j++) {
-                                        JSONObject project = projectJSON.getJSONObject(i);
+                                        JSONObject project = projectJSON.getJSONObject(j);
 
                                         String projectId = project.getString("projectId");
                                         String title = project.getString("title");
@@ -163,4 +188,72 @@ public class LoadData {
         rq.add(s);
     }
 
+    public void loadPosters(final Context context, final String url, final boolean touteslesdonnees) {
+
+        final SSLUtil sslUtil = new SSLUtil(context, "root");
+
+        RequestQueue rq = Volley.newRequestQueue(context, new HurlStack(null, sslUtil.getSslSocketFactory()));
+
+        StringRequest s = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("=================", response.getBytes().toString());
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+        });
+        rq.add(s);
+    }
+
+    public void loadMarks(Context context, String url) {
+
+        final SSLUtil sslUtil = new SSLUtil(context, "root");
+
+        RequestQueue rq = Volley.newRequestQueue(context, new HurlStack(null, sslUtil.getSslSocketFactory()));
+
+        JsonObjectRequest s = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject s) {
+
+                        Log.e("RESULT", String.valueOf(s));
+                        try {
+                            if(s.getString("result").equals("OK")) {
+
+                                List<Mark> listMark = new ArrayList<>();
+                                JSONArray array = s.getJSONArray("notes");
+
+                                for(int i = 0; i < array .length(); i++) {
+                                    JSONObject project = array.getJSONObject(i);
+
+                                    String id = project.getString("userId");
+                                    String forename = project.getString("forename");
+                                    String surname = project.getString("surname");
+                                    double mynote = project.getDouble("mynote");
+                                    double avgnote = project.getDouble("avgNote");
+
+                                    listMark.add(new Mark(id, forename, surname,
+                                            mynote, avgnote));
+                                }
+
+                                TempData.setListMark(listMark);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Log.e("KO",volleyError.getMessage()); }
+                } );
+        rq.add(s);
+    }
 }

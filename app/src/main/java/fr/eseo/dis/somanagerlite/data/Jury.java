@@ -1,43 +1,8 @@
 package fr.eseo.dis.somanagerlite.data;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.support.annotation.NonNull;
-
 import java.util.List;
 
-//@Entity(tableName = "juries")
 public class Jury {
-    /*
-        @PrimaryKey
-        @NonNull
-        private int idJury;
-
-        @NonNull
-        private String date;
-
-
-        public Jury(@NonNull int idJury, @NonNull String date){
-            this.idJury = idJury;
-            this.date = date;
-        }
-
-        @NonNull
-        public int getIdJury() {
-            return idJury;
-        }
-
-        public void setIdJury(@NonNull int idJury) {
-            this.idJury = idJury;
-        }
-
-        @NonNull
-        public String getDate(){ return  date;}
-
-        public void setDate(@NonNull String date){ this.date = date;}
-    }*/
 
     private String idJury;
     private String date;

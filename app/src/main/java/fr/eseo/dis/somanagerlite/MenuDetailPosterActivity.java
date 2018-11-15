@@ -22,7 +22,7 @@ public class MenuDetailPosterActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_menu_detail_poster);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
-
+/*
         Intent intent = getIntent();
         Bundle data = intent.getExtras();
         poster = (Poster) data.getParcelable(MenuPosterActivity.POSTER_EXTRA);
@@ -35,7 +35,7 @@ public class MenuDetailPosterActivity  extends AppCompatActivity {
         }
         if(poster.getName().equals("NO IDEA")){
             imageView.setImageResource(R.drawable.image3);
-        }
+        }*/
 //        loadOptionSelectedData();
     }
 

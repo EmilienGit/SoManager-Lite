@@ -34,7 +34,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private User user;
 
-    public static final String USER_EXTRA = "user_extra";
+    public static final String USER_EXTRA_ID = "user_extra_id";
+    public static final String USER_EXTRA_USERNAME = "user_extra_username";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +77,8 @@ public class LoginActivity extends AppCompatActivity {
                                 String token = s.getString("token");
                                 user = new User(token, username);
                                 Intent intent = new Intent (getApplicationContext(),MenuActivity.class);
-                                intent.putExtra(USER_EXTRA, (Parcelable) user);
+                                intent.putExtra(USER_EXTRA_ID, user.getId());
+                                intent.putExtra(USER_EXTRA_USERNAME, user.getUsername());
                                 startActivity(intent);
                             }else{
                                 passwdEdit.setError("KO");
@@ -94,4 +96,6 @@ public class LoginActivity extends AppCompatActivity {
                 } );
         rq.add(s);
     }
+
+
 }

@@ -1,91 +1,64 @@
 package fr.eseo.dis.somanagerlite.data;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.support.annotation.NonNull;
-
-//@Entity(tableName = "notes")
 public class Mark {
-/*
-    @PrimaryKey
-    @NonNull
-    private float note;
 
-    public Mark(@NonNull float note){
-        this.note = note;
+    private String id;
+    private String forename;
+    private String surname;
+    private double mynote;
+    private double avgnote;
+
+    public Mark(String id, String forename, String surname, double mynote, double avgnote){
+        this.id = id;
+        this.forename = forename;
+        this.surname = surname;
+        this.mynote = mynote;
+        this.avgnote = avgnote;
     }
 
-    @NonNull
-    public float getNote() {
-        return note;
+    public String getId() {
+        return id;
     }
 
-    public void setNote(@NonNull float note) {
-        this.note = note;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    */
-    public static final Parcelable.Creator<Mark> CREATOR = new Parcelable.Creator<Mark>(){
-        public Mark createFromParcel(Parcel source){
-            return new Mark(source);
-        }
-
-        public Mark[] newArray(int size){
-            return new Mark[size];
-        }
-    };
-
-    private String nom;
-    private String prenom;
-    private double note;
-
-    public Mark(String nom, String prenom, double note){
-        this.nom = nom;
-        this.prenom = prenom;
-        this.note = note;
+    public String getForename() {
+        return forename;
     }
 
-    public Mark(Parcel in){
-        this.nom = in.readString();
-        this.prenom = in.readString();
-        this.note = in.readDouble();
-
+    public void setForename(String forename) {
+        this.forename = forename;
     }
 
-    public String getNom() {
-        return nom;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public double getMyNote() {
+        return mynote;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setMyNote(double mynote) {
+        this.mynote = mynote;
     }
 
-    public double getNote() {
-        return note;
+    public double getAvgNote() {
+        return avgnote;
     }
 
-    public void setNote(double note) {
-        this.note = note;
+    public void setAvgNote(double avgnote) {
+        this.avgnote = avgnote;
     }
 
     public int describeContents(){
         return 0;
     }
 
-    public void writeToParcel(Parcel dest, int flags){
-        dest.writeString(this.nom);
-        dest.writeString(this.prenom);
-        dest.writeDouble(this.note);
-    }
 }
 
