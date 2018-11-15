@@ -82,4 +82,14 @@ public class TempData {
     public static void setListMyJury(List<Jury> listMyJury) {
         LIST_MYJURY= listMyJury;
     }
+
+    public static void clearData(){
+        LIST_JURY.clear();
+        LIST_MYJURY.clear();
+        LIST_POSTER.clear();
+        LIST_MY_POSTER.clear();
+        LIST_PROJECT.clear();
+        LIST_MYPROJECT.clear();
+        LIST_MARK.clear();
+    }
 }

@@ -4,10 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
+import fr.eseo.dis.somanagerlite.data.Project;
 import fr.eseo.dis.somanagerlite.data.User;
+import fr.eseo.dis.somanagerlite.data.source.TempData;
 import fr.eseo.dis.somanagerlite.utils.LoadData;
 
 
@@ -84,10 +89,11 @@ public class MenuActivity extends AppCompatActivity {
                 "&token="+this.user.getId();
 
         LoadData loadAllProject = new LoadData();
-
-        loadAllProject.loadProjectsMarksPosters(this.getApplicationContext(), urlAllProject, true, user);
-        loadAllProject.loadProjectsMarksPosters(this.getApplicationContext(), urlMyProject, false, user);
-        loadAllProject.loadJuries(this.getApplicationContext(), urlAllJury, true);
-        loadAllProject.loadJuries(this.getApplicationContext(), urlMyJury, false);
+        if(TempData.getProject().isEmpty()) {
+            loadAllProject.loadProjectsMarksPosters(this.getApplicationContext(), urlAllProject, true, user);
+            loadAllProject.loadProjectsMarksPosters(this.getApplicationContext(), urlMyProject, false, user);
+            loadAllProject.loadJuries(this.getApplicationContext(), urlAllJury, true);
+            loadAllProject.loadJuries(this.getApplicationContext(), urlMyJury, false);
+        }
     }
 }
