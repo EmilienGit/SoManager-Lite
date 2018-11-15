@@ -16,17 +16,18 @@ import fr.eseo.dis.somanagerlite.R;
 import fr.eseo.dis.somanagerlite.VisitorProjectActivity;
 import fr.eseo.dis.somanagerlite.data.Project;
 
-public class MenuProjectAdapter extends RecyclerView.Adapter<MenuProjectAdapter.ProjectViewHolder> {
+public class VisitorProjectAdapter extends RecyclerView.Adapter<VisitorProjectAdapter.VisitorProjectViewHolder> {
 
-    private MenuProjectActivity activity;
 
+    private VisitorProjectActivity acitivVisitorProject;
 
     private List<Project> projectList;
 
     public List<Integer> positionsExpanded = new ArrayList<>();
 
-    public MenuProjectAdapter(MenuProjectActivity activity) {
-        this.activity = activity;
+
+    public VisitorProjectAdapter(VisitorProjectActivity activity) {
+        this.acitivVisitorProject = activity;
         setProjects(new ArrayList<Project>());
     }
 
@@ -41,13 +42,12 @@ public class MenuProjectAdapter extends RecyclerView.Adapter<MenuProjectAdapter.
     }
 
     @Override
-    public MenuProjectAdapter.ProjectViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View projectView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_menu_project, parent, false);
-        return new MenuProjectAdapter.ProjectViewHolder(projectView);
+    public VisitorProjectAdapter.VisitorProjectViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View projectView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activiry_visitor_projects, parent, false);
+        return new VisitorProjectAdapter.VisitorProjectViewHolder(projectView);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull MenuProjectAdapter.ProjectViewHolder projectViewHolder, final int position) {
+    public void onBindViewHolder(@NonNull VisitorProjectAdapter.VisitorProjectViewHolder projectViewHolder, final int position) {
         final Project project = projectList.get(position);
         projectViewHolder.projectTitle.setText(project.getTitle());
         projectViewHolder.projectResume.setText(project.getDescription());
@@ -60,7 +60,7 @@ public class MenuProjectAdapter extends RecyclerView.Adapter<MenuProjectAdapter.
         projectViewHolder.view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                TextView description = (TextView) v.findViewById(R.id.tv_project_resume);
+                TextView description = (TextView) v.findViewById(R.id.tv_visitor_project_resume);
                 if (positionsExpanded.contains(position)) {
                     description.setVisibility(View.GONE);
                     positionsExpanded.remove(new Integer(position));
@@ -75,25 +75,26 @@ public class MenuProjectAdapter extends RecyclerView.Adapter<MenuProjectAdapter.
         projectViewHolder.buttonDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //activity.clickDetailProjectCard(project);
+                //acitivVisitorProject.clickDetailProjectCard(project);
             }
         });
     }
 
-    class ProjectViewHolder extends RecyclerView.ViewHolder {
+    class VisitorProjectViewHolder extends RecyclerView.ViewHolder {
 
         private final View view;
         private final TextView projectTitle;
         private final TextView projectResume;
         private final Button buttonDetail;
 
-        public ProjectViewHolder(View view) {
+        public VisitorProjectViewHolder(View view) {
             super(view);
             this.view = view;
-            projectTitle = view.findViewById(R.id.tv_project_title);
-            projectResume = view.findViewById(R.id.tv_project_resume);
-            buttonDetail = view.findViewById(R.id.button_details);
+            projectTitle = view.findViewById(R.id.tv_visitor_project_title);
+            projectResume = view.findViewById(R.id.tv_visitor_project_resume);
+            buttonDetail = view.findViewById(R.id.visitor_button_details);
 
         }
     }
+
 }

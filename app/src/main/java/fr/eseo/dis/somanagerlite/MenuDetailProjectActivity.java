@@ -10,8 +10,6 @@ import com.google.gson.Gson;
 
 import fr.eseo.dis.somanagerlite.data.Poster;
 import fr.eseo.dis.somanagerlite.data.Project;
-import fr.eseo.dis.somanagerlite.data.adapters.MenuPosterAdapter;
-import fr.eseo.dis.somanagerlite.data.source.DummyData;
 
 public class MenuDetailProjectActivity extends AppCompatActivity {
 
@@ -35,7 +33,7 @@ public class MenuDetailProjectActivity extends AppCompatActivity {
         imageView = findViewById(R.id.image_poster);
         if(project.getTitle().equals("Titre 1")){
             imageView.setImageResource(R.drawable.image1);
-            project.setResume(project.getResume());
+            project.setDescription(project.getDescription());
         }
         if(project.getTitle().equals("Titre 2")){
             imageView.setImageResource(R.drawable.image2);

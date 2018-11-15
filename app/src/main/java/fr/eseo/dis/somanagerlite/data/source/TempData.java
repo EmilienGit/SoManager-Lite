@@ -16,6 +16,8 @@ public class TempData {
 
     private static List<Poster> LIST_POSTER = new ArrayList<>();
 
+    private static List<Project> LIST_VISITOR_PROJECT = new ArrayList<>();
+
     private static List<Poster> LIST_MY_POSTER = new ArrayList<>();
 
     private static List<Project> LIST_PROJECT = new ArrayList<>();
@@ -63,8 +65,16 @@ public class TempData {
         return LIST_MYPROJECT;
     }
 
+    public static List<Project> getVisitorProject() {
+        return LIST_VISITOR_PROJECT;
+    }
+
     public static void setListMyProject(List<Project> listMyProject) {
         LIST_MYPROJECT = listMyProject;
+    }
+
+    public static void setListVisitorProject(List<Project> listMyProject) {
+        LIST_VISITOR_PROJECT = listMyProject;
     }
 
     public static List<Jury> getJury() {
