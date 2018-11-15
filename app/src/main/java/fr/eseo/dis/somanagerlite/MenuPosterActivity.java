@@ -14,8 +14,6 @@ public class MenuPosterActivity extends AppCompatActivity {
 
     private MenuPosterAdapter menuPosterAdapter;
 
-    public static final String POSTER_EXTRA = "poster_extra";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +36,6 @@ public class MenuPosterActivity extends AppCompatActivity {
 
     public void clickDetailPosterCard(Poster poster){
         Intent intent = new Intent(this, MenuDetailPosterActivity.class);
-        //intent.putExtra(POSTER_EXTRA, poster);
         startActivity(intent);
     }
 }

@@ -98,7 +98,7 @@ public class LoadData {
                                         final String urlAllMarks = "https://192.168.4.248/pfe/webservice.php?q=NOTES&user=" + realUser.getUsername() +
                                                 "&proj==" + TempData.getMyProject().get(i).getId() + "&token=" + realUser.getId();
 
-                                        loadMarks(context, urlAllMarks);
+                                        loadMarks(context, urlAllMarks, TempData.getMyProject().get(i).getId());
 
                                         /* Poster */
                                         final String urlAllPosters = "https://192.168.4.248/pfe/webservice.php?q=POSTR&user=" + realUser.getUsername() +
@@ -211,7 +211,7 @@ public class LoadData {
         rq.add(s);
     }
 
-    public void loadMarks(Context context, String url) {
+    public void loadMarks(Context context, String url, final String projectId) {
 
         final SSLUtil sslUtil = new SSLUtil(context, "root");
 
@@ -239,10 +239,39 @@ public class LoadData {
                                     double avgnote = project.getDouble("avgNote");
 
                                     listMark.add(new Mark(id, forename, surname,
-                                            mynote, avgnote));
+                                            mynote, avgnote, projectId));
                                 }
 
                                 TempData.setListMark(listMark);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Log.e("KO",volleyError.getMessage()); }
+                } );
+        rq.add(s);
+    }
+
+    public void setMarks(Context context, String url) {
+
+        final SSLUtil sslUtil = new SSLUtil(context, "root");
+
+        RequestQueue rq = Volley.newRequestQueue(context, new HurlStack(null, sslUtil.getSslSocketFactory()));
+
+        JsonObjectRequest s = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject s) {
+
+                        Log.e("RESULT", String.valueOf(s));
+                        try {
+                            if(s.getString("result").equals("OK")) {
+                                Log.e("RESULT", "La nouvelle note a été prise en compte !");
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

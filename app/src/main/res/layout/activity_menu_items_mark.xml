@@ -6,11 +6,29 @@
     android:paddingRight="6dp"
     android:paddingTop="6dp"
     android:paddingBottom="6dp">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/markList"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        android:onClick="onClick"
-        />
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/mark_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:minLines="2"
+            android:maxLines="2"
+            android:padding="2dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="His note (blue) Average note (yellow)"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/markList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:onClick="onClick"
+            />
+    </LinearLayout>
+
 </RelativeLayout>
