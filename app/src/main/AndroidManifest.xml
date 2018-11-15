@@ -29,7 +29,6 @@
         <activity android:name=".MenuJuryActivity"></activity>
         <activity android:name=".MenuMarkActivity"></activity>
         <activity android:name=".MenuProjectActivity"></activity>
-        <activity android:name=".MenuDetailPosterActivity"></activity>
     </application>
 
 </manifest>

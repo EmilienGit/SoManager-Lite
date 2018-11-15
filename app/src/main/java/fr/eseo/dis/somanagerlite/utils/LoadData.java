@@ -2,8 +2,12 @@ package fr.eseo.dis.somanagerlite.utils;
 
 import android.content.Context;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.util.Base64;
 import android.widget.ImageView;
 
 import com.android.volley.Request;
@@ -24,6 +28,7 @@ import java.util.List;
 
 import fr.eseo.dis.somanagerlite.data.Jury;
 import fr.eseo.dis.somanagerlite.data.Mark;
+import fr.eseo.dis.somanagerlite.data.Poster;
 import fr.eseo.dis.somanagerlite.data.Project;
 import fr.eseo.dis.somanagerlite.data.User;
 import fr.eseo.dis.somanagerlite.data.source.TempData;
@@ -87,7 +92,7 @@ public class LoadData {
                                     for(int i = 0; i < TempData.getProject().size(); i++) {
                                         /* Poster */
                                         final String urlAllPosters = "https://192.168.4.248/pfe/webservice.php?q=POSTR&user=" + realUser.getUsername() +
-                                                "&proj==" + TempData.getProject().get(i).getId() + "&style=" + "THB64" + "&token=" + realUser.getId();
+                                                "&proj=" + TempData.getProject().get(i).getId() + "&style=" + "THB64" + "&token=" + realUser.getId();
 
                                         loadPosters(context, urlAllPosters, true);
                                     }
@@ -102,7 +107,7 @@ public class LoadData {
 
                                         /* Poster */
                                         final String urlAllPosters = "https://192.168.4.248/pfe/webservice.php?q=POSTR&user=" + realUser.getUsername() +
-                                                "&proj==" + TempData.getMyProject().get(i).getId() + "&style=" + "THB64" + "&token=" + realUser.getId();
+                                                "&proj=" + TempData.getMyProject().get(i).getId() + "&style=" + "THB64" + "&token=" + realUser.getId();
 
                                         loadPosters(context, urlAllPosters, false);
                                     }
@@ -189,7 +194,6 @@ public class LoadData {
     }
 
     public void loadPosters(final Context context, final String url, final boolean touteslesdonnees) {
-
         final SSLUtil sslUtil = new SSLUtil(context, "root");
 
         RequestQueue rq = Volley.newRequestQueue(context, new HurlStack(null, sslUtil.getSslSocketFactory()));
@@ -199,13 +203,25 @@ public class LoadData {
 
                     @Override
                     public void onResponse(String response) {
+
                         Log.e("=================", response.getBytes().toString());
+
+                        String encodedImage = response.toString();
+                        byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
+                        Log.e("========--------", decodedString.toString());
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        Log.e("-----------------", bitmap.toString());
+
+                        if(touteslesdonnees){
+                            TempData.addPoster(new Poster(bitmap));
+                        } else {
+                            TempData.addMyPoster(new Poster(bitmap));
+                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
                     }
         });
         rq.add(s);
