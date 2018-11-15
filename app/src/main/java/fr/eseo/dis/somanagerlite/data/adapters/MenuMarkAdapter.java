@@ -16,6 +16,9 @@ import java.util.List;
 import fr.eseo.dis.somanagerlite.MenuMarkActivity;
 import fr.eseo.dis.somanagerlite.R;
 import fr.eseo.dis.somanagerlite.data.Mark;
+import fr.eseo.dis.somanagerlite.data.User;
+import fr.eseo.dis.somanagerlite.data.source.TempData;
+import fr.eseo.dis.somanagerlite.utils.LoadData;
 
 public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkViewHolder> {
 
@@ -23,8 +26,14 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
 
     private List<Mark> markList;
 
-    public MenuMarkAdapter(MenuMarkActivity activity){
+    private User realUser;
+
+    private LoadData loadData;
+
+    public MenuMarkAdapter(MenuMarkActivity activity, User user){
         this.activity = activity;
+        this.realUser = user;
+        this.loadData = new LoadData();
         setMarks(new ArrayList<Mark>());
     }
 
@@ -50,6 +59,8 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
         markViewHolder.surname.setText(mark.getSurname());
         markViewHolder.note.setText(String.valueOf(mark.getMyNote()));
         markViewHolder.note.setTextColor(Color.rgb(0,184,230));
+        markViewHolder.avgnote.setText(String.valueOf(mark.getAvgNote()));
+        markViewHolder.avgnote.setTextColor(Color.rgb(238,173,14));
 
         markViewHolder.note.addTextChangedListener(new TextWatcher() {
             String noteTemp = markViewHolder.note.getText().toString();;
@@ -69,6 +80,12 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
                     if(Double.parseDouble(markViewHolder.note.getText().toString()) >= 0
                             && Double.parseDouble(markViewHolder.note.getText().toString()) <= 20){
                         mark.setMyNote(Double.parseDouble(markViewHolder.note.getText().toString()));
+
+                        /* Set Mark */
+                        final String urlSetMark = "https://192.168.4.248/pfe/webservice.php?q=NEWNT&user=" + realUser.getUsername() +
+                                "&proj==" + mark.getProjectId() + "&student=" + mark.getUserId() + "&note=" + Double.parseDouble(markViewHolder.note.getText().toString()) + "&token=" + realUser.getId();
+
+                        loadData.setMarks(activity.getApplicationContext(), urlSetMark);
                     }
                     else {
                         mark.setMyNote(Double.parseDouble(noteTemp));
@@ -76,6 +93,41 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
                     }
                 } else {
                     mark.setMyNote(Double.parseDouble(noteTemp));
+                }
+            }
+        });
+
+        markViewHolder.avgnote.addTextChangedListener(new TextWatcher() {
+            String noteTemp = markViewHolder.avgnote.getText().toString();;
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(!markViewHolder.avgnote.getText().toString().equals("")){
+                    if(Double.parseDouble(markViewHolder.avgnote.getText().toString()) >= 0
+                            && Double.parseDouble(markViewHolder.avgnote.getText().toString()) <= 20){
+                        mark.setAvgNote(Double.parseDouble(markViewHolder.avgnote.getText().toString()));
+
+                        /* Set Mark */
+                        final String urlSetMark = "https://192.168.4.248/pfe/webservice.php?q=NEWNT&user=" + realUser.getUsername() +
+                                "&proj==" + mark.getProjectId() + "&student=" + mark.getUserId() + "&note=" + Double.parseDouble(markViewHolder.avgnote.getText().toString()) + "&token=" + realUser.getId();
+
+                        loadData.setMarks(activity.getApplicationContext(), urlSetMark);
+                    }
+                    else {
+                        mark.setAvgNote(Double.parseDouble(noteTemp));
+                        markViewHolder.avgnote.setError("Notes are out of bound !");
+                    }
+                } else {
+                    mark.setAvgNote(Double.parseDouble(noteTemp));
                 }
             }
         });
@@ -88,6 +140,7 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
         private final TextView forname;
         private final TextView surname;
         private final TextView note;
+        private final TextView avgnote;
 
         public MarkViewHolder(View view){
             super(view);
@@ -96,6 +149,7 @@ public class MenuMarkAdapter extends RecyclerView.Adapter<MenuMarkAdapter.MarkVi
             forname = view.findViewById(R.id.mark_forname);
             surname = view.findViewById(R.id.mark_surname);
             note = view.findViewById(R.id.mark_value);
+            avgnote = view.findViewById(R.id.mark_avg);
         }
     }
 }

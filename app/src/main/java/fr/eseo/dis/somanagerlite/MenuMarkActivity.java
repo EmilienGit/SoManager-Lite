@@ -5,16 +5,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import fr.eseo.dis.somanagerlite.data.User;
 import fr.eseo.dis.somanagerlite.data.adapters.MenuMarkAdapter;
 import fr.eseo.dis.somanagerlite.data.source.TempData;
-import fr.eseo.dis.somanagerlite.utils.LoadData;
 
 public class MenuMarkActivity extends AppCompatActivity {
 
     private MenuMarkAdapter menuMarkAdapter;
+
     private User user;
 
     @Override
@@ -24,10 +23,15 @@ public class MenuMarkActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
 
+        Intent intent = getIntent();
+        Bundle data = intent.getExtras();
+        this.user = new User(String.valueOf(data.get(MenuActivity.USER_EXTRA_ID)), String.valueOf(data.get(MenuActivity.USER_EXTRA_USERNAME)));
+
+
         RecyclerView recycler = (RecyclerView)findViewById(R.id.markList);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(llm);
-        menuMarkAdapter = new MenuMarkAdapter(this);
+        menuMarkAdapter = new MenuMarkAdapter(this, this.user);
         recycler.setAdapter(menuMarkAdapter);
 
         loadOptionSelectedData();
