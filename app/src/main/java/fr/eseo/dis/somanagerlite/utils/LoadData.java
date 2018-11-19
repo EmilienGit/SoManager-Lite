@@ -23,9 +23,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eseo.dis.somanagerlite.R;
 import fr.eseo.dis.somanagerlite.data.Jury;
 import fr.eseo.dis.somanagerlite.data.Mark;
 import fr.eseo.dis.somanagerlite.data.Poster;
@@ -204,9 +206,7 @@ public class LoadData {
                     @Override
                     public void onResponse(String response) {
 
-                        Log.e("=================", response.getBytes().toString());
-
-                        String encodedImage = response.toString();
+                        String encodedImage = response;
                         byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
                         Log.e("========--------", decodedString.toString());
                         Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
