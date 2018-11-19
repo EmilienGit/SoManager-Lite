@@ -200,7 +200,7 @@ public class LoadData {
 
         RequestQueue rq = Volley.newRequestQueue(context, new HurlStack(null, sslUtil.getSslSocketFactory()));
 
-        StringRequest s = new StringRequest(Request.Method.GET, url,
+        /*StringRequest s = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
 
                     @Override
@@ -224,7 +224,7 @@ public class LoadData {
                     public void onErrorResponse(VolleyError error) {
                     }
         });
-        rq.add(s);
+        rq.add(s);*/
     }
 
     public void loadMarks(Context context, String url, final String projectId) {

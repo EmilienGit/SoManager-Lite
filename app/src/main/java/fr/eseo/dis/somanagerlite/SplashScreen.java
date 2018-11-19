@@ -59,5 +59,6 @@ public class SplashScreen extends Activity {
             loadAllProject.loadJuries(this.getApplicationContext(), urlAllJury, true);
             loadAllProject.loadJuries(this.getApplicationContext(), urlMyJury, false);
         }
+
     }
 }

@@ -37,18 +37,6 @@ public class MenuProjectActivity extends AppCompatActivity {
 
         loadOptionSelectedData();
 
-        /*final Button sendVisitorProject = findViewById(R.id.SendVisitorProject);
-        List<Project> projects = new ArrayList<>();
-        sendVisitorProject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int i = 0; i < 4; i++){
-                    projects.add(TempData.getProject().get((int)(Math.random()*(TempData.getProject().size()-0))));
-                }
-                TempData.setListVisitorProject(projects);
-
-            }
-        });*/
 
     }
 
