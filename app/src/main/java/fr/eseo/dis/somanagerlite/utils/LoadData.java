@@ -198,19 +198,16 @@ public class LoadData {
 
         RequestQueue rq = Volley.newRequestQueue(context, new HurlStack(null, sslUtil.getSslSocketFactory()));
 
-        StringRequest s = new StringRequest(Request.Method.GET, url,
+        /*StringRequest s = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
 
                     @Override
                     public void onResponse(String response) {
 
-                        Log.e("=================", response.getBytes().toString());
 
-                        String encodedImage = response.toString();
+                        String encodedImage = response;
                         byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
-                        Log.e("========--------", decodedString.toString());
                         Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                        Log.e("-----------------", bitmap.toString());
 
                         if(touteslesdonnees){
                             TempData.addPoster(new Poster(bitmap));
@@ -224,7 +221,7 @@ public class LoadData {
                     public void onErrorResponse(VolleyError error) {
                     }
         });
-        rq.add(s);
+        rq.add(s);*/
     }
 
     public void loadMarks(Context context, String url, final String projectId) {

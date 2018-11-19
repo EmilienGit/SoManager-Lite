@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                             if(s.getString("result").equals("OK")) {
                                 String token = s.getString("token");
                                 user = new User(token, username);
-                                Intent intent = new Intent (getApplicationContext(),MenuActivity.class);
+                                Intent intent = new Intent (getApplicationContext(),SplashScreen.class);
                                 intent.putExtra(USER_EXTRA_ID, user.getId());
                                 intent.putExtra(USER_EXTRA_USERNAME, user.getUsername());
                                 startActivity(intent);
