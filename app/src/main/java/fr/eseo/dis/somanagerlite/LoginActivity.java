@@ -30,6 +30,7 @@ import fr.eseo.dis.somanagerlite.utils.SSLUtil;
 public class LoginActivity extends AppCompatActivity {
 
     private Button connexionButton;
+    private Button visitorButton;
     private EditText loginEdit;
     private EditText passwdEdit;
 
@@ -52,6 +53,12 @@ public class LoginActivity extends AppCompatActivity {
         connexionButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 clickConnexion();
+            }
+        });
+        visitorButton = (Button) findViewById(R.id.visitor);
+        visitorButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                clickVisitor();
             }
         });
     }
@@ -100,5 +107,9 @@ public class LoginActivity extends AppCompatActivity {
         rq.add(s);
     }
 
+    public void clickVisitor() {
+        Intent intent = new Intent (getApplicationContext(),VisitorProjectActivity.class);
+        startActivity(intent);
+    }
 
 }

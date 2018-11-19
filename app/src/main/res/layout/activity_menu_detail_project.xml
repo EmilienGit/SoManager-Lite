@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-
         <TextView
             android:id="@+id/tv_project_title"
             android:layout_width="match_parent"
@@ -18,32 +15,27 @@
             android:padding="2dp"
             android:maxLines="2"
             android:minLines="2"
-            android:text="@string/projet_android"
+            android:text="Projet android"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tv_project_resume"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:text="@string/projet_info"
+            android:text="Informations of my project"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
-      <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="end">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button_details"
-            android:text="@string/detail"/>
-        </LinearLayout>
-    </LinearLayout>
 
-</android.support.v7.widget.CardView>
+        <ImageView
+            android:id="@+id/image_poster"
+            android:layout_width="394dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/image3" />
+    </LinearLayout>
+</LinearLayout>
